@@ -49,6 +49,43 @@ public:
 		return tmp;
     }
 };
+//不用map直接复制
+class Solution {
+public:
+    RandomListNode *copyRandomList(RandomListNode *head) {
+        if(!head)
+			return NULL;
+		RandomListNode* cur = head;
+		RandomListNode* res = NULL;
+		RandomListNode* tmp = NULL;
+		while(cur!=NULL)
+		{
+			res = new RandomListNode(cur->label);
+			res->next = cur->next;
+			cur->next = res;
+			cur = res->next;
+		}
+		cur = head;
+		while(cur!=NULL)
+		{
+			res = cur->next;
+			if(cur->random)
+				res->random = cur->random->next;
+			cur = res->next;
+		}
+		cur = head;
+		tmp = head->next;
+		while(cur!=NULL)
+		{
+			res = cur->next;
+			cur->next = res->next;
+			cur = cur->next;
+			if(cur)
+				res->next = cur->next;
+		}
+		return tmp;
+    }
+};
 int _tmain(int argc, _TCHAR* argv[])
 {
 	return 0;
