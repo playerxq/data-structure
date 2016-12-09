@@ -73,6 +73,41 @@ public:
 		return res;
     }
 };
+//postorder anyother solution
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+		vector<int> res;
+		if(root==NULL)
+			return res;
+		stack<TreeNode*> ss;
+		TreeNode* cur = root;
+		TreeNode* lastright = NULL;
+		while(cur!=NULL||!ss.empty())
+		{
+			if(cur!=NULL)
+			{
+				ss.push(cur);
+				cur = cur->left;
+			}
+			else
+			{
+				TreeNode* tt = ss.top();
+				if(tt->right!=NULL&&lastright!=tt->right)
+				{
+					cur = tt->right;
+				}
+				else
+				{
+					res.push_back(tt->val);
+					lastright = tt;
+					ss.pop();
+				}
+			}
+		}
+		return res;
+	}
+};
 int _tmain(int argc, _TCHAR* argv[])
 {
 	return 0;
