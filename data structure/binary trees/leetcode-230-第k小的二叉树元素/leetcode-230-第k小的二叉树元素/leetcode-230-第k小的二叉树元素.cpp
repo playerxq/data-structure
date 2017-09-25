@@ -7,7 +7,7 @@
 #include <string.h>
 #include <math.h>
 #include <vector>
-#include <queue>
+#include <stack>
 #include<iomanip>
 #include <ctype.h>
 #include <algorithm>
@@ -21,6 +21,12 @@ using namespace std;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+struct TreeNode {
+     int val;
+     TreeNode *left;
+     TreeNode *right;
+     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ };
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k) {
@@ -39,6 +45,7 @@ public:
             st.pop();
             p = p->right;
         }
+		return 0;
     }
 };
 int main()
